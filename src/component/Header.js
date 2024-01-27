@@ -6,7 +6,8 @@ import {Link} from "react-router-dom";
 const HeaderStyle = styled.header`
   width: 100%;
   
-  background-color: ${p => p.theme.color.Gray1};
+  background-color: ${p => p.theme.color.Gray0};
+  border-bottom: 2px solid ${p => p.theme.color.Gray2};
   
   position: fixed;
   top: 0;
@@ -14,7 +15,7 @@ const HeaderStyle = styled.header`
   & > div {
     width: 100%;
     height: 100%;
-    max-width: ${p => p.theme.size.mobileMaxWidth}px;
+    max-width: var(--max-page-content);
 
     padding: 16px 12px;
     margin: 0 auto;
@@ -54,7 +55,7 @@ const Header = () => {
     <HeaderStyle ref={headerElement}>
       <div>
         <Link to={"/"}>
-          <img src={logo} alt=""/>
+          <img src={logo} alt="로고"/>
         </Link>
         <ul>
           {menu.map(i => (

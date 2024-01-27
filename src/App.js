@@ -1,19 +1,32 @@
 import {GlobalStyle} from "./style/GlobalStyle";
 import {ThemeProvider} from "styled-components";
 import {Resize} from "./component/Resize";
-import {Theme} from "./style/theme";
+import {size, Theme} from "./style/theme";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import UiSection from "./section/UiSection";
-import React from "react";
+import React, {useEffect} from "react";
 import {UiContextProvider} from "./context/UiReducer";
-import Page from "./page/Page";
-import {Route, Router, Routes} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import MainPage from "./page/MainPage";
 import GeneratePage from "./page/GeneratePage";
 import InfoPage from "./page/InfoPage";
 
 function App() {
+  const {pathname} = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if(pathname === "/"){
+      document.documentElement.style.setProperty("--max-page-content", "600px")
+    }
+    else {
+      document.documentElement.style.setProperty("--max-page-content", `${size.mobileMaxWidth}px`)
+    }
+
+  }, [pathname])
+
   return (
     <div className="App">
       <ThemeProvider theme={Theme}>

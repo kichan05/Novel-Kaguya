@@ -135,9 +135,10 @@ export const color = {
   HeechanBlue: "#586FE9",
 };
 
+export const size = {
+  mobileMaxWidth: 1000,
+}
+
 export const Theme = {
-  color,
-  size: {
-    mobileMaxWidth: 1000,
-  }
+  color, size
 }

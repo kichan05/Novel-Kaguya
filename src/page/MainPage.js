@@ -3,6 +3,10 @@ import {PageBasicStyle} from "../style/BasicStyle";
 
 const MainPageStyle = styled.div`
   ${PageBasicStyle};
+  
+  & > .content {
+    height: calc(var(--vh) * 100 - var(--header-height));
+  }
 `
 
 const MainPage = () => {

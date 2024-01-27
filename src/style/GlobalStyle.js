@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     min-width: 320px;
-    background-color: ${p => p.theme.color.Gray3};
+    background-color: ${p => p.theme.color.Gray0};
   }
   
   button, input {

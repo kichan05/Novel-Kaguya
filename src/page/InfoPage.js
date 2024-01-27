@@ -9,7 +9,7 @@ const InfoPage = () => {
  return (
   <InfoPageStyle>
     <div className="content">
-      생성
+      이 프로젝트는...
     </div>
   </InfoPageStyle>
  )
