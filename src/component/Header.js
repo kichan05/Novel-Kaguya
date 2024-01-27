@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import logo from "./../asset/logo.svg"
 import {useEffect, useRef} from "react";
+import {Link} from "react-router-dom";
 
 const HeaderStyle = styled.header`
   width: 100%;
@@ -14,26 +16,53 @@ const HeaderStyle = styled.header`
     height: 100%;
     max-width: ${p => p.theme.size.mobileMaxWidth}px;
 
-    padding: 20px 16px;
+    padding: 16px 12px;
     margin: 0 auto;
+    
+    display: flex;
   }
   
-  & h1 {
-    font-size: 28px;
+  & ul {
+    margin-left: 12px;
+    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  & ul li {
+    font-size: 17px;
+    font-weight: 400;
+    
+    cursor: pointer;
   }
 `
 
 const Header = () => {
   const headerElement = useRef()
+  const menu = [
+    {id: 0, name: "소설 만들기", path: "/generate"},
+    {id: 1, name: "프로젝트 정보", path: "/info"},
+  ]
+
   useEffect(() => {
     const height = headerElement.current.clientHeight
-    console.log(height)
     document.documentElement.style.setProperty("--header-height", `${height}px`)
   })
+
   return (
     <HeaderStyle ref={headerElement}>
       <div>
-        <h1>헤더</h1>
+        <Link to={"/"}>
+          <img src={logo} alt=""/>
+        </Link>
+        <ul>
+          {menu.map(i => (
+            <Link to={i.path}>
+              <li key={i.id}>{i.name}</li>
+            </Link>
+          ))}
+        </ul>
       </div>
     </HeaderStyle>
   )
