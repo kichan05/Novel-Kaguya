@@ -4,14 +4,10 @@ export const UI_ACTION_TYPE = {
   modal_show: "MODAL_SHOW",
   modal_hide: "MODAL_HIDE",
   modal_toggle: "MODAL_TOGGLE",
-
-  toast_show: "TOAST_SHOW",
-  toast_hide: "TOAST_HIDE",
 }
 
 const uiState = {
   isModalShow: false,
-  toastMessage: null
 }
 
 function reducer(state, action) {
@@ -30,16 +26,6 @@ function reducer(state, action) {
       return {
         ...state,
         isModalShow: !state.isModalShow
-      }
-    case UI_ACTION_TYPE.toast_show:
-      return {
-        ...state,
-        toastMessage: action.message
-      }
-    case UI_ACTION_TYPE.toast_hide:
-      return {
-        ...state,
-        toastMessage: null
       }
     default:
       throw "Undefined ui reducer action type"
