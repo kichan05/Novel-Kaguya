@@ -23,7 +23,23 @@ const Footer = () => {
   return (
     <FooterStyle>
       <div ref={footerElement}>
-        푸터
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
+        푸터 <br/>
       </div>
     </FooterStyle>
   )

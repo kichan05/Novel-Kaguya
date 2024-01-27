@@ -14,12 +14,13 @@ import InfoPage from "./page/InfoPage";
 
 function App() {
   const {pathname} = useLocation()
+  console.log(useLocation())
 
   useEffect(() => {
     window.scrollTo(0, 0)
 
     if(pathname === "/"){
-      document.documentElement.style.setProperty("--max-page-content", "600px")
+      document.documentElement.style.setProperty("--max-page-content", "700px")
     }
     else {
       document.documentElement.style.setProperty("--max-page-content", `${size.mobileMaxWidth}px`)

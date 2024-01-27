@@ -7,7 +7,9 @@ export const GlobalStyle = createGlobalStyle`
   ${FontStyle}
   
   *, *::before, *::after {
+    color: ${p => p.theme.color.Gray8};
     font-family: SUIT, serif;
+    line-height: 1.5em;
   }
   
   body {
