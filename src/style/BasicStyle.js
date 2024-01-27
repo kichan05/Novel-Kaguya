@@ -1,6 +1,7 @@
 import {css} from "styled-components";
 
 export const PageBasicStyle = css`
+  padding: 12px 8px;
   margin-top: var(--header-height);
 
   & > .content {

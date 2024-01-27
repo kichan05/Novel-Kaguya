@@ -1,5 +1,5 @@
 import {GlobalStyle} from "./style/GlobalStyle";
-import styled, {ThemeProvider} from "styled-components";
+import {ThemeProvider} from "styled-components";
 import {Resize} from "./component/Resize";
 import {Theme} from "./style/theme";
 import Header from "./component/Header";
@@ -8,11 +8,10 @@ import UiSection from "./section/UiSection";
 import React from "react";
 import {UiContextProvider} from "./context/UiReducer";
 import Page from "./page/Page";
-
-const Test = styled.div`
-  height: var(--footer-height);
-  background-color: #f00;
-`
+import {Route, Router, Routes} from "react-router-dom";
+import MainPage from "./page/MainPage";
+import GeneratePage from "./page/GeneratePage";
+import InfoPage from "./page/InfoPage";
 
 function App() {
   return (
@@ -23,7 +22,13 @@ function App() {
 
         <UiContextProvider>
           <Header/>
-          <Page/>
+
+          <Routes>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path="/generate" element={<GeneratePage/>}/>
+            <Route path="/info" element={<InfoPage/>}/>
+          </Routes>
+
           <Footer/>
           <UiSection/>
         </UiContextProvider>
