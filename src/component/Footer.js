@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {useEffect, useRef} from "react";
 
 const FooterStyle = styled.footer`
-  background-color: ${p => p.theme.color.Gray3};
+  background-color: ${p => p.theme.color.Gray2};
   
   & > div {
     width: 100%;
@@ -35,7 +35,7 @@ const Footer = () => {
       <div ref={footerElement}>
         <h6>Novel Kaguya</h6>
         <p><a href="https://kichan.dev" target="_blank">개발, 디자인, 기획 : 박희찬</a></p>
-        <p><a href="https://github.com/kichan.dev/Novel-Kaguya" target="_blank">오픈소스 프로젝트</a></p>
+        <p><a href="https://github.com/kichan05/Novel-Kaguya" target="_blank">오픈소스 프로젝트</a></p>
         <p><a href="https://toss.me/바키찬희찬" target="_blank">개발자 후원</a></p>
       </div>
     </FooterStyle>

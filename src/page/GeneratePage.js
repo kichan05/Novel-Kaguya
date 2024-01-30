@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import {PageBasicStyle} from "../style/BasicStyle";
-import Input from "../component/Input";
 import InputLabel from "../component/InputLabel";
 import {useEffect, useState} from "react";
-import {TextArea, TextAreaLabel} from "../component/TextArea";
+import {TextAreaLabel} from "../component/TextArea";
 import Button from "../component/Button";
 import {useNavigate} from "react-router-dom";
-import {calculateNewValue} from "@testing-library/user-event/dist/utils";
+import {VscDebugRestart, VscLoading} from "react-icons/vsc";
 
 const GeneratePageStyle = styled.div`
   ${PageBasicStyle};
@@ -42,6 +41,11 @@ const GeneratePage = () => {
     plot: ""
   })
   const [isGenerateAble, setGenerateAble] = useState(false)
+  const [apiInfo, setApiInfo] = useState({
+    isLoading: false,
+    body: null,
+    error: null
+  })
 
   useEffect(() => {
     const temp = Object.values(inputValues).map(i => {
@@ -57,13 +61,20 @@ const GeneratePage = () => {
 
   const navigate = useNavigate()
 
-  const onSubmit = e => {
+  const generateNovel = async (prompt) => {
+    //todo: api 통신하기
+    return "대충 개꿀잼 소설 대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼"
+  }
+
+  const onSubmit = async e => {
     e.preventDefault()
+
+    const novel = await generateNovel(inputValues)
 
     navigate("/result", {
       state: {
         prompt: inputValues,
-        novel: "대충 개꿀잼 소설 대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼"
+        novel
       }
     })
   }
@@ -98,7 +109,9 @@ const GeneratePage = () => {
             value={inputValues.plot} onChange={inputChange}/>
         </div>
         <div className="submit-wrap">
-          <Button disabled={!isGenerateAble}>소설 제작하기</Button>
+          <Button disabled={!isGenerateAble}>
+            소설 제작하기
+          </Button>
         </div>
       </form>
     </div>
