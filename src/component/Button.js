@@ -48,8 +48,13 @@ const ButtonStyle = styled.button`
   
   user-select: none;
   
+  ${p => p.disabled && css`
+    opacity: 0.5;
+    cursor: not-allowed;
+  `}
+  
   &:hover {
-    transform: translateY(-2px);
+    transform: ${p => !p.disabled && `translateY(-2px)`};
   }
 `
 

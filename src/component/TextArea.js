@@ -42,11 +42,11 @@ const TextAreaLabelStyle = styled.label`
   }
 `
 
-export const TextAreaLabel = ({label, ...rest}) => {
+export const TextAreaLabel = ({label, value, ...rest}) => {
   return (
     <TextAreaLabelStyle>
       <div className="label">{label}</div>
-      <TextArea {...rest}/>
+      <TextArea {...rest}>{value}</TextArea>
     </TextAreaLabelStyle>
   )
 }

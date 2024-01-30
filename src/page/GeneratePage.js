@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {PageBasicStyle} from "../style/BasicStyle";
 import Input from "../component/Input";
 import InputLabel from "../component/InputLabel";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TextArea, TextAreaLabel} from "../component/TextArea";
 import Button from "../component/Button";
 
@@ -39,6 +39,14 @@ const GeneratePage = () => {
     title: "", tag: "", mainCharacterName: "",
     plot: ""
   })
+  const [isGenerateAble, setGenerateAble] = useState(false)
+
+  useEffect(() => {
+    const temp = Object.values(inputValues).map(i => {
+      return i !== undefined && i.length >= 1
+    })
+    setGenerateAble(temp.filter(i => !i).length === 0)
+  }, [inputValues])
 
   const inputChange = e => {
     const {name, value} = e.target
@@ -47,6 +55,8 @@ const GeneratePage = () => {
 
   const onSubmit = e => {
     e.preventDefault()
+
+    alert("ㅋㅋ")
   }
 
  return (
@@ -73,10 +83,13 @@ const GeneratePage = () => {
           />
         </div>
         <div className="plot-input-wrap input-wrap">
-          <TextAreaLabel label={"줄거리"} line={5} resize={"vertical"}/>
+          <TextAreaLabel
+            label={"줄거리"} line={5} resize={"vertical"}
+            name={"plot"}
+            value={inputValues.plot} onChange={inputChange}/>
         </div>
         <div className="submit-wrap">
-          <Button>소설 제작하기</Button>
+          <Button disabled={!isGenerateAble}>소설 제작하기</Button>
         </div>
       </form>
     </div>
