@@ -27,7 +27,7 @@ const ResultPageStyle = styled.div`
 
 const Box = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 16px 20px;
 
   border-radius: 6px;
   background: ${p => p.theme.color.Gray2};

@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${p => p.theme.color.Gray8};
     font-family: SUIT, serif;
     line-height: 1.5em;
+    word-break: keep-all;
   }
   
   body {
