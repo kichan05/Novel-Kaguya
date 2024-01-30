@@ -11,10 +11,17 @@ const ResultPageStyle = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
+    
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
   }
   
   & .content > div {
     flex: 1;
+    @media screen and (max-width: 500px) {
+      flex: none;
+    }
   }
   
   & .icon-button-wrap {
