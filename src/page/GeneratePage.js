@@ -5,6 +5,8 @@ import InputLabel from "../component/InputLabel";
 import {useEffect, useState} from "react";
 import {TextArea, TextAreaLabel} from "../component/TextArea";
 import Button from "../component/Button";
+import {useNavigate} from "react-router-dom";
+import {calculateNewValue} from "@testing-library/user-event/dist/utils";
 
 const GeneratePageStyle = styled.div`
   ${PageBasicStyle};
@@ -53,10 +55,17 @@ const GeneratePage = () => {
     setInputValues({...inputValues, [name]: value})
   }
 
+  const navigate = useNavigate()
+
   const onSubmit = e => {
     e.preventDefault()
 
-    alert("ㅋㅋ")
+    navigate("/result", {
+      state: {
+        prompt: inputValues,
+        novel: "대충 개꿀잼 소설"
+      }
+    })
   }
 
  return (

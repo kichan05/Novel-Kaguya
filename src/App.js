@@ -7,12 +7,11 @@ import Footer from "./component/Footer";
 import UiSection from "./section/UiSection";
 import React, {useEffect} from "react";
 import {UiContextProvider} from "./context/UiReducer";
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes, ScrollRestoration, useLocation} from "react-router-dom";
 import MainPage from "./page/MainPage";
 import GeneratePage from "./page/GeneratePage";
 import InfoPage from "./page/InfoPage";
-import InputLabel from "./component/InputLabel";
-import Page from "./page/Page";
+import ResultPage from "./page/ResultPage";
 
 function App() {
   const {pathname} = useLocation()
@@ -36,12 +35,14 @@ function App() {
         <GlobalStyle/>
         <Resize/>
 
+
         <UiContextProvider>
           <Header/>
           {/*<Page/>*/}
           <Routes>
             <Route path="/" element={<MainPage/>}/>
             <Route path="/generate" element={<GeneratePage/>}/>
+            <Route path="/result" element={<ResultPage/>}/>
             <Route path="/info" element={<InfoPage/>}/>
           </Routes>
 
