@@ -36,7 +36,7 @@ TextArea.defaultProps = {
   resize: "none"
 }
 
-const TextAreaLavelStyle = styled.div`
+const TextAreaLabelStyle = styled.label`
   & .label {
     font-size: 15px;
   }
@@ -44,9 +44,9 @@ const TextAreaLavelStyle = styled.div`
 
 export const TextAreaLabel = ({label, ...rest}) => {
   return (
-    <TextAreaLavelStyle>
+    <TextAreaLabelStyle>
       <div className="label">{label}</div>
       <TextArea {...rest}/>
-    </TextAreaLavelStyle>
+    </TextAreaLabelStyle>
   )
 }

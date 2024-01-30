@@ -1,7 +1,7 @@
 import Input from "./Input";
 import styled from "styled-components";
 
-const InputLabelStyle = styled.div`
+const InputLabelStyle = styled.label`
   & .label {
     font-size: 15px;
     font-weight: 400;

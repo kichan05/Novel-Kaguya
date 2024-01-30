@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import {lighten} from "polished";
+import {darken, lighten} from "polished";
 
 const ButtonColor = css`
   ${({theme, textColor, background}) => {
@@ -21,8 +21,8 @@ const ButtonColor = css`
       color: ${txtColor};
       background-color: ${bgColor};
 
-      &:hover, &:focus {
-        background-color: ${lighten(0.05, bgColor)};
+      &:hover {
+        background-color: ${darken(0.07, bgColor)};
       }
 
       &:active {
