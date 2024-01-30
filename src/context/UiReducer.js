@@ -3,11 +3,10 @@ import React, {useContext, useReducer} from "react";
 export const UI_ACTION_TYPE = {
   modal_show: "MODAL_SHOW",
   modal_hide: "MODAL_HIDE",
-  modal_toggle: "MODAL_TOGGLE",
 }
 
 const uiState = {
-  isModalShow: false,
+  loadingModal: null
 }
 
 function reducer(state, action) {
@@ -15,17 +14,12 @@ function reducer(state, action) {
     case UI_ACTION_TYPE.modal_show:
       return {
         ...state,
-        isModalShow: true
+        loadingModal: action.data
       }
     case UI_ACTION_TYPE.modal_hide:
       return {
         ...state,
-        isModalShow: false
-      }
-    case UI_ACTION_TYPE.modal_toggle:
-      return {
-        ...state,
-        isModalShow: !state.isModalShow
+        loadingModal: null
       }
     default:
       throw "Undefined ui reducer action type"
