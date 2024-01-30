@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {PageBasicStyle} from "../style/BasicStyle";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {IconButton} from "../component/IconButton";
+import {VscArrowLeft, VscCopy, VscDebugRestart} from "react-icons/vsc";
 
 const ResultPageStyle = styled.div`
   ${PageBasicStyle};
@@ -14,6 +15,13 @@ const ResultPageStyle = styled.div`
   
   & .content > div {
     flex: 1;
+  }
+  
+  & .icon-button-wrap {
+    margin-top: 8px;
+    
+    display: flex;
+    justify-content: space-between;
   }
 `
 
@@ -36,8 +44,19 @@ const Box = styled.div`
 
 const ResultPage = () => {
   const location = useLocation()
+  const naviagtion = useNavigate()
   const {prompt, novel} = location.state
   const {title, tag, mainCharacterName, plot} = prompt
+
+  const gotoPrev = () => {
+    naviagtion(-1)
+  }
+  const copyClipboard = () => {
+    navigator.clipboard.writeText(novel).then(() => alert("복사 완료"))
+  }
+  const reload = () => {
+
+  }
 
   return (
     <ResultPageStyle>
@@ -58,6 +77,13 @@ const ResultPage = () => {
             <div className="title">완성된 소설</div>
             <p>{novel}</p>
           </Box>
+          <div className="icon-button-wrap">
+            <IconButton onClick={gotoPrev}><VscArrowLeft/></IconButton>
+            <div>
+              <IconButton onClick={copyClipboard}><VscCopy/></IconButton>
+              <IconButton onClick={reload}><VscDebugRestart/></IconButton>
+            </div>
+          </div>
         </div>
       </div>
     </ResultPageStyle>
