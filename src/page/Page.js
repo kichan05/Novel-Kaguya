@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {UI_ACTION_TYPE, useUiDispatch, useUiState} from "../context/UiReducer";
+import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
 import Button from "../component/Button";
 import {PageBasicStyle} from "../style/BasicStyle";
 import {useState} from "react";
 import {LuImagePlus} from "react-icons/lu";
 import {IconButton} from "../component/IconButton";
-import Input from "../component/Input";
 import InputLabel from "../component/InputLabel";
+import {TextArea} from "../component/TextArea";
 
 const PageStyle = styled.div`
   ${PageBasicStyle};
@@ -29,6 +29,8 @@ const Page = () => {
         <IconButton onClick={() => {alert("Hello World")}}><LuImagePlus/></IconButton>
 
         <InputLabel label={"이름"} value={count} onChange={e => setCount(e.target.value)} placeholder={"이름을 입력해주세요"}/>
+
+        <TextArea value={count} onChange={e => setCount(e.target.value)}/>
         {count}
       </div>
     </PageStyle>
