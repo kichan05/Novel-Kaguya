@@ -51,12 +51,12 @@ const Box = styled.div`
 
 const ResultPage = () => {
   const location = useLocation()
-  const naviagtion = useNavigate()
+  const navigation = useNavigate()
   const {prompt, novel} = location.state
   const {title, tag, mainCharacterName, plot} = prompt
 
   const gotoPrev = () => {
-    naviagtion(-1)
+    navigation(-1)
   }
   const copyClipboard = () => {
     navigator.clipboard.writeText(novel).then(() => alert("복사 완료"))
@@ -85,10 +85,16 @@ const ResultPage = () => {
             <p>{novel}</p>
           </Box>
           <div className="icon-button-wrap">
-            <IconButton onClick={gotoPrev}><VscArrowLeft/></IconButton>
+            <IconButton
+              title={"돌아가기"}
+              onClick={gotoPrev}><VscArrowLeft/></IconButton>
             <div>
-              <IconButton onClick={copyClipboard}><VscCopy/></IconButton>
-              <IconButton onClick={reload}><VscDebugRestart/></IconButton>
+              <IconButton
+                title={"복사"}
+                onClick={copyClipboard}><VscCopy/></IconButton>
+              <IconButton
+                title={"다시 만들기"}
+                onClick={reload}><VscDebugRestart/></IconButton>
             </div>
           </div>
         </div>
