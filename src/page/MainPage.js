@@ -19,6 +19,10 @@ const MainPageStyle = styled.div`
     
     display: inline-flex;
     gap: 20px;
+    
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
   }
 
   & > .content > * {
