@@ -48,7 +48,7 @@ const ButtonStyle = styled.button`
   
   user-select: none;
   
-  &:hover, &:focus {
+  &:hover {
     transform: translateY(-2px);
   }
 `
