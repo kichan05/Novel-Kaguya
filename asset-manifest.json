@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/Novel-Kaguya/static/js/main.bfee9d85.js",
+    "static/js/787.df7b7e15.chunk.js": "/Novel-Kaguya/static/js/787.df7b7e15.chunk.js",
+    "static/media/novel_kaguya.jpg": "/Novel-Kaguya/static/media/novel_kaguya.1f559ea07de561d38288.jpg",
+    "static/media/logo.svg": "/Novel-Kaguya/static/media/logo.adeb33dd779d6cf196d2b192f44bbd4d.svg",
+    "index.html": "/Novel-Kaguya/index.html",
+    "main.bfee9d85.js.map": "/Novel-Kaguya/static/js/main.bfee9d85.js.map",
+    "787.df7b7e15.chunk.js.map": "/Novel-Kaguya/static/js/787.df7b7e15.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.bfee9d85.js"
+  ]
+}
