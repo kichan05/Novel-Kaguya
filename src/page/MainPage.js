@@ -4,6 +4,8 @@ import aiImage from "./../asset/novel_kaguya.jpg"
 import Button from "../component/Button";
 import {useRef, useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import InputLabel from "../component/InputLabel";
+import Input from "../component/Input";
 
 const MainPageStyle = styled.div`
   ${PageBasicStyle};

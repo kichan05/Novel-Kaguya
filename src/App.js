@@ -11,6 +11,8 @@ import {Route, Routes, useLocation} from "react-router-dom";
 import MainPage from "./page/MainPage";
 import GeneratePage from "./page/GeneratePage";
 import InfoPage from "./page/InfoPage";
+import InputLabel from "./component/InputLabel";
+import Page from "./page/Page";
 
 function App() {
   const {pathname} = useLocation()
@@ -36,7 +38,7 @@ function App() {
 
         <UiContextProvider>
           <Header/>
-
+          {/*<Page/>*/}
           <Routes>
             <Route path="/" element={<MainPage/>}/>
             <Route path="/generate" element={<GeneratePage/>}/>

@@ -12,7 +12,7 @@ const TextAreaStyle = styled.textarea`
 
   padding: 12px;
   background-color: ${props => props.theme.color.Gray1};
-  
+
   resize: ${p => p.resize};
 
   &::placeholder {
@@ -34,4 +34,19 @@ export const TextArea = ({line, resize, ...rest}) => {
 TextArea.defaultProps = {
   line: 3,
   resize: "none"
+}
+
+const TextAreaLavelStyle = styled.div`
+  & .label {
+    font-size: 15px;
+  }
+`
+
+export const TextAreaLabel = ({label, ...rest}) => {
+  return (
+    <TextAreaLavelStyle>
+      <div className="label">{label}</div>
+      <TextArea {...rest}/>
+    </TextAreaLavelStyle>
+  )
 }

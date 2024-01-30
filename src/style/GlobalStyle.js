@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${p => p.theme.color.Gray0};
   }
   
-  button, input {
+  button, input, textarea {
     background: none;
     color: inherit;
     border: none;
