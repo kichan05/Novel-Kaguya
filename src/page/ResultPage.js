@@ -3,7 +3,7 @@ import {PageBasicStyle} from "../style/BasicStyle";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IconButton} from "../component/IconButton";
 import {VscArrowLeft, VscCopy, VscDebugRestart} from "react-icons/vsc";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
 import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from "react-tooltip";
@@ -79,12 +79,15 @@ const ResultPage = () => {
   const {prompt, novel} = location.state
   const {title, tag, mainCharacterName, plot} = prompt
 
-  const [novelList, setNovelList] = useState([novel])
-
+  const novelId = useRef(1)
+  const [novelList, setNovelList] = useState([
+    {id: 0, novel, isOpen : true}
+  ])
 
   const gotoPrev = () => {
     navigation(-1)
   }
+
   const copyClipboard = (txt) => {
     navigator.clipboard.writeText(txt).then(() => alert("복사 완료"))
   }
@@ -92,7 +95,10 @@ const ResultPage = () => {
     uiDispatch({type: UI_ACTION_TYPE.modal_show, data: prompt})
 
     setTimeout(() => {
-      setNovelList([...novelList, "더 재밌는 소설"])
+      setNovelList([...novelList, {
+        id: novelId.current, novel, isOpen : true
+      }])
+      novelId.current += 1
 
       uiDispatch({type: UI_ACTION_TYPE.modal_hide})
     }, 1500)
@@ -131,20 +137,20 @@ const ResultPage = () => {
 
         <div>
           {novelList.map((novel, index) => (
-            <Box key={index} className={"novel-item"}>
+            <Box key={novel.id} className={"novel-item"}>
               <div
                 className="title">
-                {index + 1}번째 소설
+                {novel.id + 1}번째 소설
                 <div
                   className="copy-icon"
-                  onClick={() => copyClipboard(novel)}
+                  onClick={() => copyClipboard(novel.novel)}
                   data-tooltip-id={"btn-result-copy"}
                   data-tooltip-content={"복사하기"}
                 >
                   <VscCopy/>
                 </div>
               </div>
-              <p>{novel}</p>
+              <p>{novel.novel}</p>
             </Box>
           ))}
         </div>
