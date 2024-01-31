@@ -29,7 +29,7 @@ const ResultPageStyle = styled.div`
   }
 
   & .novel-item {
-    margin-top: 6px;
+    margin-bottom: 6px;
   }
 
   & .icon-button-wrap {
@@ -50,10 +50,24 @@ const Box = styled.div`
   & .title {
     font-size: 17px;
     font-weight: 600;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .copy-icon {
+    opacity: 0;
+
+    transition: 200ms;
+    cursor: pointer;
   }
 
   & p {
     margin-top: 4px;
+  }
+
+  &:hover .copy-icon {
+    opacity: 1;
   }
 `
 
@@ -118,7 +132,18 @@ const ResultPage = () => {
         <div>
           {novelList.map((novel, index) => (
             <Box key={index} className={"novel-item"}>
-              <div className="title">{index + 1}번째 소설</div>
+              <div
+                className="title">
+                {index + 1}번째 소설
+                <div
+                  className="copy-icon"
+                  onClick={() => copyClipboard(novel)}
+                  data-tooltip-id={"btn-result-copy"}
+                  data-tooltip-content={"복사하기"}
+                >
+                  <VscCopy/>
+                </div>
+              </div>
               <p>{novel}</p>
             </Box>
           ))}
