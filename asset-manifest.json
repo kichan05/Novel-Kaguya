@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.js": "/static/js/main.b6d5ca99.js",
+    "main.css": "/static/css/main.832e2724.css",
+    "main.js": "/static/js/main.2be9a540.js",
     "static/js/787.df7b7e15.chunk.js": "/static/js/787.df7b7e15.chunk.js",
     "static/media/novel_kaguya.jpg": "/static/media/novel_kaguya.1f559ea07de561d38288.jpg",
     "static/media/logo.svg": "/static/media/logo.adeb33dd779d6cf196d2b192f44bbd4d.svg",
     "index.html": "/index.html",
-    "main.b6d5ca99.js.map": "/static/js/main.b6d5ca99.js.map",
+    "main.832e2724.css.map": "/static/css/main.832e2724.css.map",
+    "main.2be9a540.js.map": "/static/js/main.2be9a540.js.map",
     "787.df7b7e15.chunk.js.map": "/static/js/787.df7b7e15.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.b6d5ca99.js"
+    "static/css/main.832e2724.css",
+    "static/js/main.2be9a540.js"
   ]
 }
