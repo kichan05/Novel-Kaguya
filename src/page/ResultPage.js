@@ -28,15 +28,15 @@ const ResultPageStyle = styled.div`
     }
   }
 
-  & .novel-list li {
-    margin-top: 4px;
+  & .novel-item {
+    margin-top: 6px;
   }
 
   & .icon-button-wrap {
-    margin-top: 1px;
+    margin-top: 8px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
   }
 `
 
@@ -101,36 +101,28 @@ const ResultPage = () => {
               줄거리 : {plot}<br/>
             </p>
           </Box>
+          <div className="icon-button-wrap">
+            <IconButton
+              onClick={gotoPrev}
+              data-tooltip-id="btn-result-prev"
+              data-tooltip-content="돌아가기"
+            ><VscArrowLeft/></IconButton>
+            <IconButton
+              onClick={retry}
+              data-tooltip-id="btn-result-retry"
+              data-tooltip-content="다시 생성"
+            ><VscDebugRestart/></IconButton>
+          </div>
         </div>
-        <ui className={"novel-list"}>
+
+        <div>
           {novelList.map((novel, index) => (
-            <li key={index}>
-              <Box>
-                <div className="title">{index + 1}번째 소설</div>
-                <p>{novel}</p>
-              </Box>
-              <div className="icon-button-wrap">
-                <IconButton
-                  onClick={gotoPrev}
-                  data-tooltip-id="btn-result-prev"
-                  data-tooltip-content="돌아가기"
-                ><VscArrowLeft/></IconButton>
-                <div>
-                  <IconButton
-                    onClick={copyClipboard}
-                    data-tooltip-id="btn-result-copy"
-                    data-tooltip-content="복사하기"
-                  ><VscCopy/></IconButton>
-                  <IconButton
-                    onClick={retry}
-                    data-tooltip-id="btn-result-retry"
-                    data-tooltip-content="다시 생성"
-                  ><VscDebugRestart/></IconButton>
-                </div>
-              </div>
-            </li>
+            <Box key={index} className={"novel-item"}>
+              <div className="title">{index + 1}번째 소설</div>
+              <p>{novel}</p>
+            </Box>
           ))}
-        </ui>
+        </div>
       </div>
     </ResultPageStyle>
   )
