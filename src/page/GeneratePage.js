@@ -23,7 +23,7 @@ const GeneratePageStyle = styled.div`
       flex: 1;
     }
 
-    @media screen and (max-width: 790px) {
+    @media screen and (max-width: 550px) {
       flex-direction: column;
     }
   }
@@ -61,7 +61,7 @@ const GeneratePage = () => {
   const navigate = useNavigate()
   const uiDispatch = useUiDispatch()
 
-  const tagList = ["판다지", "로맨스", "액션", "일상", "aaa", "bbb"]
+  const tagList = ["판다지", "로맨스", "액션", "일상"]
 
   const [inputValues, setInputValues] = useState({
     title: "", tag: tagList[0], mainCharacterName: "",
@@ -86,15 +86,15 @@ const GeneratePage = () => {
 
     const novel = await generateNovel(inputValues)
 
-    setTimeout(() => {
-      uiDispatch({type: UI_ACTION_TYPE.modal_hide})
-      navigate("/result", {
-        state: {
-          prompt: inputValues,
-          novel
-        }
-      })
-    }, 1500)
+    // setTimeout(() => {
+    //   uiDispatch({type: UI_ACTION_TYPE.modal_hide})
+    //   navigate("/result", {
+    //     state: {
+    //       prompt: inputValues,
+    //       novel
+    //     }
+    //   })
+    // }, 1500)
   }
 
   useEffect(() => {

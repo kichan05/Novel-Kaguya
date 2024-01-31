@@ -96,35 +96,27 @@ const ModalContent = styled.div`
   }
 `
 
-const A = keyframes`
-  0% {
-    transform: perspective(150px) rotateX(0deg) rotateY(0deg)
-  }
-  50% {
-    transform: perspective(150px) rotateX(180deg) rotateY(0deg)
-  }
-  100% {
-    transform: perspective(150px) rotateX(180deg) rotateY(180deg)
-  }
-`
-const B = keyframes`
-  0% {
-    background: #ffa516
-  }
+const loadingAnimation = keyframes`
   33% {
-    background: #f03355
+    border-radius: 0;
+    background: #514b82;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
   }
   66% {
-    background: #25b09b
+    border-radius: 0;
+    background: #ffa516;
+    clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%)
   }
 `
-const Loading = styled.div`
-  width: 60px;
-  aspect-ratio: 1;
-  animation: ${A} 1500ms infinite linear,
-  ${B} 4500ms infinite steps(1) -.5s;
-`
 
+const Loading = styled.div`
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f03355;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  animation: ${loadingAnimation} 1700ms infinite cubic-bezier(0.3, 1, 0, 1);
+`
 
 const LoadingModal = ({data}) => {
   return (
