@@ -3,6 +3,10 @@ import {PageBasicStyle} from "../style/BasicStyle";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IconButton} from "../component/IconButton";
 import {VscArrowLeft, VscCopy, VscDebugRestart} from "react-icons/vsc";
+import {useState} from "react";
+import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
+import 'react-tooltip/dist/react-tooltip.css'
+import {Tooltip} from "react-tooltip";
 
 const ResultPageStyle = styled.div`
   ${PageBasicStyle};
@@ -11,22 +15,26 @@ const ResultPageStyle = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
-    
+
     @media screen and (max-width: 500px) {
       flex-direction: column;
     }
   }
-  
-  & .content > div {
+
+  & .content > * {
     flex: 1;
     @media screen and (max-width: 500px) {
       flex: none;
     }
   }
-  
+
+  & .novel-list li {
+    margin-top: 4px;
+  }
+
   & .icon-button-wrap {
-    margin-top: 8px;
-    
+    margin-top: 1px;
+
     display: flex;
     justify-content: space-between;
   }
@@ -52,21 +60,36 @@ const Box = styled.div`
 const ResultPage = () => {
   const location = useLocation()
   const navigation = useNavigate()
+  const uiDispatch = useUiDispatch()
+
   const {prompt, novel} = location.state
   const {title, tag, mainCharacterName, plot} = prompt
+
+  const [novelList, setNovelList] = useState([novel])
+
 
   const gotoPrev = () => {
     navigation(-1)
   }
-  const copyClipboard = () => {
-    navigator.clipboard.writeText(novel).then(() => alert("복사 완료"))
+  const copyClipboard = (txt) => {
+    navigator.clipboard.writeText(txt).then(() => alert("복사 완료"))
   }
-  const reload = () => {
+  const retry = async () => {
+    uiDispatch({type: UI_ACTION_TYPE.modal_show, data: prompt})
 
+    setTimeout(() => {
+      setNovelList([...novelList, "더 재밌는 소설"])
+
+      uiDispatch({type: UI_ACTION_TYPE.modal_hide})
+    }, 1500)
   }
 
   return (
     <ResultPageStyle>
+      <Tooltip id={"btn-result-prev"}/>
+      <Tooltip id={"btn-result-copy"}/>
+      <Tooltip id={"btn-result-retry"}/>
+
       <div className="content">
         <div>
           <Box>
@@ -79,25 +102,35 @@ const ResultPage = () => {
             </p>
           </Box>
         </div>
-        <div>
-          <Box>
-            <div className="title">완성된 소설</div>
-            <p>{novel}</p>
-          </Box>
-          <div className="icon-button-wrap">
-            <IconButton
-              title={"돌아가기"}
-              onClick={gotoPrev}><VscArrowLeft/></IconButton>
-            <div>
-              <IconButton
-                title={"복사"}
-                onClick={copyClipboard}><VscCopy/></IconButton>
-              <IconButton
-                title={"다시 만들기"}
-                onClick={reload}><VscDebugRestart/></IconButton>
-            </div>
-          </div>
-        </div>
+        <ui className={"novel-list"}>
+          {novelList.map((novel, index) => (
+            <li key={index}>
+              <Box>
+                <div className="title">{index + 1}번째 소설</div>
+                <p>{novel}</p>
+              </Box>
+              <div className="icon-button-wrap">
+                <IconButton
+                  onClick={gotoPrev}
+                  data-tooltip-id="btn-result-prev"
+                  data-tooltip-content="돌아가기"
+                ><VscArrowLeft/></IconButton>
+                <div>
+                  <IconButton
+                    onClick={copyClipboard}
+                    data-tooltip-id="btn-result-copy"
+                    data-tooltip-content="복사하기"
+                  ><VscCopy/></IconButton>
+                  <IconButton
+                    onClick={retry}
+                    data-tooltip-id="btn-result-retry"
+                    data-tooltip-content="다시 생성"
+                  ><VscDebugRestart/></IconButton>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ui>
       </div>
     </ResultPageStyle>
   )
