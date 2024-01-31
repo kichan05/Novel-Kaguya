@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const TextAreaStyle = styled.textarea`
   width: 100%;
+  min-height: 100px;
 
   color: ${p => p.theme.color.Gray8};
   font-size: 16px;
