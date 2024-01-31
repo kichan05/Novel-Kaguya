@@ -36,15 +36,16 @@ const MainPageStyle = styled.div`
     & img {
       width: 100%;
       border-radius: 4px;
-      
-      transition: filter 200ms;
 
       position: absolute;
       top: 0;
       left: 0;
       z-index: -1;
+
+      user-select: none;
+      transition: 100ms;
     }
-    
+
     & .img2 {
       z-index: -2;
       opacity: 0.25;
@@ -129,8 +130,10 @@ const MainPage = () => {
             >
               <img
                 src={aiImage} alt="" style={{
-                  clipPath: imageMouse.isMouseIn ? `circle(${imageMouse.size}px at ${imageMouse.x}px ${imageMouse.y}px)` : "none",
-                }}
+                clipPath: imageMouse.isMouseIn ?
+                  `circle(${imageMouse.size}px at ${imageMouse.x}px ${imageMouse.y}px)` :
+                  `circle(150% at ${imageMouse.x}px ${imageMouse.y}px)`
+              }}
                 className={"img1"}
               />
               <img src={aiImage} alt="" className={"img2"}/>
@@ -145,7 +148,6 @@ const MainPage = () => {
             </div>
           </div>
         </div>
-        {/*<NovelCover></NovelCover>*/}
       </div>
     </MainPageStyle>
   )

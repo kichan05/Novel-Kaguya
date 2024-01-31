@@ -6,7 +6,6 @@ import {TextAreaLabel} from "../component/TextArea";
 import Button from "../component/Button";
 import {useNavigate} from "react-router-dom";
 import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
-import uiSection from "../section/UiSection";
 
 const GeneratePageStyle = styled.div`
   ${PageBasicStyle};
@@ -19,10 +18,32 @@ const GeneratePageStyle = styled.div`
     display: flex;
     flex-direction: row;
     gap: 12px;
+
+    & > * {
+      flex: 1;
+    }
+
+    @media screen and (max-width: 790px) {
+      flex-direction: column;
+    }
   }
 
-  & .tag-name-input-wrap > * {
-    flex: 1;
+  .tag-wrap {
+    .label {
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .radio-group {
+      padding: 4px;
+      margin-top: 10px;
+
+      display: flex;
+
+      * {
+        flex: 1;
+      }
+    }
   }
 
   & .submit-wrap {
@@ -39,8 +60,11 @@ const GeneratePageStyle = styled.div`
 const GeneratePage = () => {
   const navigate = useNavigate()
   const uiDispatch = useUiDispatch()
+
+  const tagList = ["판다지", "로맨스", "액션", "일상", "aaa", "bbb"]
+
   const [inputValues, setInputValues] = useState({
-    title: "", tag: "", mainCharacterName: "",
+    title: "", tag: tagList[0], mainCharacterName: "",
     plot: ""
   })
   const [isGenerateAble, setGenerateAble] = useState(false)
@@ -71,7 +95,6 @@ const GeneratePage = () => {
         }
       })
     }, 1500)
-
   }
 
   useEffect(() => {
@@ -93,11 +116,20 @@ const GeneratePage = () => {
             />
           </div>
           <div className="tag-name-input-wrap input-wrap">
-            <InputLabel
-              label="장르" name={"tag"}
-              value={inputValues["tag"]}
-              onChange={inputChange}
-            />
+            <div className="tag-wrap">
+              <div className="label">장르</div>
+              <div className={"radio-group"}>
+                {tagList.map(i => (
+                  <label>
+                    <input
+                      type={"radio"} name={"tag"} value={i}
+                      id={i}
+                      checked={i === inputValues.tag}
+                      onChange={inputChange}/> {i}
+                  </label>
+                ))}
+              </div>
+            </div>
             <InputLabel
               label="주인공 이름" name={"mainCharacterName"}
               value={inputValues["mainCharacterName"]}
