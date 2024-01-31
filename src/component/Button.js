@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {darken, lighten} from "polished";
+import React, {useEffect} from "react"
 
 const ButtonColor = css`
   ${({theme, textColor, background}) => {
@@ -70,4 +71,4 @@ Button.defaultProps = {
   isFullWidth: false,
 }
 
-export default Button
+export default React.memo(Button)
