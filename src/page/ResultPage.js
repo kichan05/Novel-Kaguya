@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {PageBasicStyle} from "../style/BasicStyle";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IconButton} from "../component/IconButton";
-import {VscArrowLeft, VscCopy, VscDebugRestart} from "react-icons/vsc";
+import {VscArrowLeft, VscCopy, VscDebugRestart, VscTriangleDown, VscTriangleRight} from "react-icons/vsc";
 import {useRef, useState} from "react";
 import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
 import 'react-tooltip/dist/react-tooltip.css'
@@ -46,15 +46,25 @@ const Box = styled.div`
 
   border-radius: 6px;
   background: ${p => p.theme.color.Gray2};
+  
+  transition: 200ms;
 
-  & .title {
+  & .header {
     font-size: 17px;
     font-weight: 600;
 
     display: flex;
     justify-content: space-between;
   }
-
+  
+  & .title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    user-select: none;
+  }
+  
   & .copy-icon {
     opacity: 0;
 
@@ -69,6 +79,14 @@ const Box = styled.div`
   &:hover .copy-icon {
     opacity: 1;
   }
+`
+
+const ToggleArrow = styled.span`
+  display: inline-flex;
+  
+  cursor: pointer;
+  transition: 200ms;
+  transform: rotateZ(${p => p.isOpen ? 0 : -90}deg);
 `
 
 const ResultPage = () => {
@@ -104,6 +122,12 @@ const ResultPage = () => {
     }, 1500)
   }
 
+  const novelToggle = (id) => {
+    setNovelList(novelList.map(n => (
+      n.id === id ? {...n, isOpen: !n.isOpen} : n
+    )))
+  }
+
   return (
     <ResultPageStyle>
       <Tooltip id={"btn-result-prev"}/>
@@ -136,11 +160,16 @@ const ResultPage = () => {
         </div>
 
         <div>
-          {novelList.map((novel, index) => (
+          {novelList.map((novel) => (
             <Box key={novel.id} className={"novel-item"}>
               <div
-                className="title">
-                {novel.id + 1}번째 소설
+                className="header">
+                <div className={"title"} onClick={() => novelToggle(novel.id)}>
+                  <ToggleArrow isOpen={novel.isOpen}>
+                    <VscTriangleDown/>
+                  </ToggleArrow>
+                  <span>{novel.id + 1}번째 소설</span>
+                </div>
                 <div
                   className="copy-icon"
                   onClick={() => copyClipboard(novel.novel)}
@@ -150,7 +179,7 @@ const ResultPage = () => {
                   <VscCopy/>
                 </div>
               </div>
-              <p>{novel.novel}</p>
+              {novel.isOpen && <p>{novel.novel}</p>}
             </Box>
           ))}
         </div>
