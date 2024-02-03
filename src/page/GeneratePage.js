@@ -6,6 +6,7 @@ import {TextAreaLabel} from "../component/TextArea";
 import Button from "../component/Button";
 import {useNavigate} from "react-router-dom";
 import {UI_ACTION_TYPE, useUiDispatch} from "../context/UiReducer";
+import axios from "axios";
 
 const GeneratePageStyle = styled.div`
   ${PageBasicStyle};
@@ -75,8 +76,14 @@ const GeneratePage = () => {
   }
 
   const generateNovel = async (prompt) => {
-    //todo: api 통신하기
-    return "대충 개꿀잼 소설 대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼 소설대충 개꿀잼"
+    const BASE_URL = process.env.REACT_APP_BASE_URL
+
+    const res = await axios.post(
+      `http://${BASE_URL}/generate`,
+      prompt
+    ).then(res => res.data)
+
+    return res["novel"]
   }
 
   const onSubmit = async e => {
@@ -86,15 +93,15 @@ const GeneratePage = () => {
 
     const novel = await generateNovel(inputValues)
 
-    // setTimeout(() => {
-    //   uiDispatch({type: UI_ACTION_TYPE.modal_hide})
-    //   navigate("/result", {
-    //     state: {
-    //       prompt: inputValues,
-    //       novel
-    //     }
-    //   })
-    // }, 1500)
+    setTimeout(() => {
+      uiDispatch({type: UI_ACTION_TYPE.modal_hide})
+      navigate("/result", {
+        state: {
+          prompt: inputValues,
+          novel
+        }
+      })
+    }, 3000)
   }
 
   useEffect(() => {

@@ -50,14 +50,14 @@ const Box = styled.div`
   transition: 200ms;
 
   & .header {
-    font-size: 17px;
-    font-weight: 600;
-
     display: flex;
     justify-content: space-between;
   }
   
   & .title {
+    font-size: 17px;
+    font-weight: 600;
+    
     display: flex;
     align-items: center;
     gap: 4px;
